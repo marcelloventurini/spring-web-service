@@ -19,7 +19,6 @@ public class OrderService {
 
   public Order findById(Long id) {
     Optional<Order> object = orderRepository.findById(id);
-
     return object.get();
   }
 }
