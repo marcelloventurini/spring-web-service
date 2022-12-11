@@ -2,6 +2,7 @@ package com.venturini.springwebservices.services;
 
 import com.venturini.springwebservices.entities.User;
 import com.venturini.springwebservices.repositories.UserRepository;
+import com.venturini.springwebservices.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class UserService {
 
   public User findById(Long id) {
     Optional<User> object = userRepository.findById(id);
-    return object.get();
+    return object.orElseThrow(() -> new ResourceNotFoundException(id));
   }
 
   public User insert(User user) {
